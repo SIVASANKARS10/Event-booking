@@ -1,0 +1,80 @@
+.qr-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 2px solid var(--border);
+  transition: border-color var(--transition);
+}
+
+.qr-wrapper:hover { border-color: var(--accent); }
+
+.qr-image {
+  display: block;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+}
+
+.qr-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8,12,20,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition);
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.qr-wrapper:hover .qr-overlay { opacity: 1; }
+
+.qr-download {
+  margin-top: 8px;
+  width: 140px;
+  font-size: 0.75rem;
+}
+
+.qr-modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 360px;
+  overflow: hidden;
+}
+
+.qr-modal-body {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.qr-image-large {
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+  border: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 8px;
+  background: #fff;
+}
+
+.qr-ticket-id {
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.qr-event-name {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
