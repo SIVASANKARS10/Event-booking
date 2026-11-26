@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TechSymposium — National Technical Symposium</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f7f9;--surface:#fff;--text:#14181f;--muted:#5b6575;--line:#dfe3ea;--accent:#e8590c;--accent-t:#fff;--ok:#1b8a4b;--bad:#c92a2a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1114;--surface:#171b20;--text:#eceff3;--muted:#98a2b0;--line:#2a313a;--accent:#ff7a2f;--accent-t:#14181f;--ok:#3ddc84;--bad:#ff6b6b}}
+:root[data-theme="dark"]{--bg:#0e1114;--surface:#171b20;--text:#eceff3;--muted:#98a2b0;--line:#2a313a;--accent:#ff7a2f;--accent-t:#14181f;--ok:#3ddc84;--bad:#ff6b6b}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:800;letter-spacing:.5px}.logo b{color:var(--accent)}
+nav a{color:var(--muted);text-decoration:none;margin-left:20px;font-size:14px}nav a:hover{color:var(--text)}
+.hero{padding:80px 0 56px}
+.tag{display:inline-block;font:600 12px/1 ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:6px 10px;border-radius:4px}
+h1{font-size:clamp(34px,6vw,62px);line-height:1.05;margin:18px 0;letter-spacing:-1.5px;max-width:14em}
+h1 span{color:var(--accent)}
+.lead{color:var(--muted);max-width:40em;font-size:18px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-t);border:0;border-radius:6px;padding:11px 20px;font:600 15px inherit;cursor:pointer;text-decoration:none}
+.btn.ghost{background:none;color:var(--text);border:1px solid var(--line)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:44px}
+.stat{border-left:3px solid var(--accent);padding-left:14px}.stat b{display:block;font-size:28px}.stat span{color:var(--muted);font-size:13px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:30px;margin:0 0 6px;letter-spacing:-.5px}.sub{color:var(--muted);margin:0 0 24px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+input,select{background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:10px 12px;font:inherit}
+.tools input{flex:1;min-width:200px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.card h3{margin:0;font-size:18px}.card p{margin:0;color:var(--muted);font-size:14px}
+.meta{font:12px ui-monospace,monospace;color:var(--muted)}
+.cat{font:600 11px ui-monospace,monospace;text-transform:uppercase;letter-spacing:1px;color:var(--accent)}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px}
+.bar{height:5px;background:var(--line);border-radius:3px;overflow:hidden}.bar i{display:block;height:100%;background:var(--accent)}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.feat div{padding:18px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.feat h4{margin:0 0 6px}.feat p{margin:0;color:var(--muted);font-size:14px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal.on{display:flex}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;width:100%;max-width:420px;max-height:90vh;overflow:auto}
+.box label{display:block;font-size:13px;color:var(--muted);margin:12px 0 4px}.box input{width:100%}
+.ticket{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.pill{font:600 12px ui-monospace,monospace;padding:3px 8px;border-radius:99px;border:1px solid var(--line)}
+.ok{color:var(--ok);border-color:var(--ok)}
+.tbl{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted);font-weight:600}
+#toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:8px;display:none;z-index:60;font-size:14px}
+footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+@media(max-width:600px){nav a.h{display:none}.hero{padding:48px 0 36px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+<div class="logo">⚡ TECH<b>SYMPOSIUM</b></div>
+<div><a class="h" href="#events">Events</a><a class="h" href="#tickets">My tickets</a><a class="h" href="#admin">Admin</a><a href="#features">Features</a></div>
+</nav></div></header>
+
+<main>
+<div class="wrap hero">
+<span class="tag">National Technical Symposium 2026</span>
+<h1>Build. Compete. <span>Book your seat.</span></h1>
+<p class="lead">Browse workshops, hackathons and talks, book tickets in seconds and walk in with a personal QR code.</p>
+<p><a class="btn" href="#events">Explore events</a> <a class="btn ghost" href="#features">How it works</a></p>
+<div class="stats" id="heroStats"></div>
+</div>
+
+<section id="events"><div class="wrap">
+<h2>Events</h2><p class="sub">Search by keyword or filter by category.</p>
+<div class="tools"><input id="q" type="search" placeholder="Search events…" aria-label="Search events"><select id="cat" aria-label="Category"></select></div>
+<div class="grid" id="list"></div>
+</div></section>
+
+<section id="tickets"><div class="wrap">
+<h2>My tickets</h2><p class="sub">Each ticket carries a unique QR code for check-in.</p>
+<div class="grid" id="mine"></div>
+</div></section>
+
+<section id="admin"><div class="wrap">
+<h2>Admin dashboard</h2><p class="sub">Live analytics and QR check-in (demo data, updates as you book).</p>
+<div class="stats" id="adminStats" style="margin:0 0 24px"></div>
+<div class="tools"><input id="vid" placeholder="Enter ticket ID to check in, e.g. TS-1A2B3C" aria-label="Ticket ID"><button class="btn" id="vbtn">Verify &amp; check in</button></div>
+<div class="tbl"><table><thead><tr><th>Event</th><th>Booked</th><th>Capacity</th><th>Fill</th><th>Revenue</th></tr></thead><tbody id="rows"></tbody></table></div>
+</div></section>
+
+<section id="features"><div class="wrap">
+<h2>Built for campus-scale events</h2><p class="sub">Everything a symposium team needs, end to end.</p>
+<div class="feat">
+<div><h4>QR tickets</h4><p>A unique code is generated per booking and scanned at the door.</p></div>
+<div><h4>No overbooking</h4><p>Seat counts update atomically, so a sold-out event stays sold out.</p></div>
+<div><h4>Secure access</h4><p>JWT authentication with separate Admin and Student roles.</p></div>
+<div><h4>Email confirmation</h4><p>Participants receive their QR ticket by email right after payment.</p></div>
+<div><h4>Admin analytics</h4><p>Revenue, attendance and seat fill rates at a glance.</p></div>
+<div><h4>Fully responsive</h4><p>Works smoothly on phones, tablets and desktops.</p></div>
+</div></div></section>
+</main>
+
+<footer><div class="wrap">© 2026 TechSymposium. Stack: React, Node.js, Express, MongoDB. This page is an interactive preview; payments are simulated.</div></footer>
+
+<div class="modal" id="m"><div class="box" id="mbox"></div></div>
+<div id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+var EV=[
+{id:1,t:"CodeStorm Hackathon",c:"Hackathon",d:"24-hour build sprint with mentors.",dt:"12 Dec · 9:00 AM",v:"Main Auditorium",p:300,cap:120,b:96},
+{id:2,t:"AI &amp; ML Workshop",c:"Workshop",d:"Hands-on model training from scratch.",dt:"12 Dec · 10:00 AM",v:"Lab Block A",p:150,cap:60,b:41},
+{id:3,t:"Robo Wars",c:"Robotics",d:"Battle-bot arena, 15 kg class.",dt:"13 Dec · 11:00 AM",v:"Open Arena",p:250,cap:40,b:40},
+{id:4,t:"Cyber Security CTF",c:"Competition",d:"Jeopardy-style capture the flag.",dt:"13 Dec · 2:00 PM",v:"Lab Block B",p:100,cap:80,b:35},
+{id:5,t:"Keynote: Future of Cloud",c:"Talk",d:"Industry leaders on scaling systems.",dt:"12 Dec · 4:00 PM",v:"Seminar Hall",p:0,cap:300,b:210},
+{id:6,t:"Paper Presentation",c:"Competition",d:"Present original research to a jury.",dt:"14 Dec · 10:00 AM",v:"Room 204",p:80,cap:50,b:18},
+{id:7,t:"Web Dev Bootcamp",c:"Workshop",d:"Ship a full-stack app in one day.",dt:"14 Dec · 9:30 AM",v:"Lab Block A",p:200,cap:70,b:52},
+{id:8,t:"IoT Design Challenge",c:"Hackathon",d:"Prototype a smart-campus device.",dt:"13 Dec · 9:00 AM",v:"Innovation Hub",p:180,cap:60,b:27}];
+var T=[];try{T=JSON.parse(localStorage.getItem("ts_tickets")||"[]")}catch(e){}
+var $=function(i){return document.getElementById(i)};
+function save(){try{localStorage.setItem("ts_tickets",JSON.stringify(T))}catch(e){}}
+function toast(s){var t=$("toast");t.textContent=s;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(function(){t.style.display="none"},2600)}
+function inr(n){return n?"₹"+n:"Free"}
+var cats=["All categories"].concat(EV.map(function(e){return e.c}).filter(function(v,i,a){return a.indexOf(v)===i}));
+$("cat").innerHTML=cats.map(function(c){return "<option>"+c+"</option>"}).join("");
+
+function render(){
+ var q=$("q").value.toLowerCase(),c=$("cat").value;
+ var L=EV.filter(function(e){return(c==="All categories"||e.c===c)&&(e.t+e.d).toLowerCase().indexOf(q)>-1});
+ $("list").innerHTML=L.length?L.map(function(e){var left=e.cap-e.b,pct=Math.round(e.b/e.cap*100);
+  return '<article class="card"><span class="cat">'+e.c+'</span><h3>'+e.t+'</h3><p>'+e.d+'</p><div class="meta">'+e.dt+' · '+e.v+'</div>'
+  +'<div class="bar"><i style="width:'+pct+'%"></i></div><div class="meta">'+(left?left+" seats left":"Sold out")+'</div>'
+  +'<div class="row"><b>'+inr(e.p)+'</b><button class="btn" '+(left?"":"disabled")+' onclick="book('+e.id+')">'+(left?"Book ticket":"Sold out")+'</button></div></article>'}).join(""):'<p class="sub">No events match your search.</p>';
+ $("mine").innerHTML=T.length?T.map(function(k,i){return '<div class="card"><div class="ticket"><div id="qr'+i+'"></div><div><span class="pill '+(k.used?"":"ok")+'">'+(k.used?"CHECKED IN":"VALID")+'</span><h3 style="margin:8px 0 2px;font-size:16px">'+k.t+'</h3><div class="meta">'+k.id+'<br>'+k.name+'</div></div></div></div>'}).join(""):'<p class="sub">No tickets yet. Book an event above to get your QR code.</p>';
+ T.forEach(function(k,i){var el=$("qr"+i);if(el&&window.QRCode)new QRCode(el,{text:k.id+"|"+k.t,width:96,height:96})});
+ var rev=0,bk=0,cp=0;EV.forEach(function(e){rev+=e.b*e.p;bk+=e.b;cp+=e.cap});
+ var ci=T.filter(function(k){return k.used}).length;
+ var S=[[EV.length,"Events"],[bk,"Tickets booked"],[Math.round(bk/cp*100)+"%","Seats filled"]];
+ $("heroStats").innerHTML=S.map(function(s){return '<div class="stat"><b>'+s[0]+'</b><span>'+s[1]+'</span></div>'}).join("");
+ $("adminStats").innerHTML=S.concat([["₹"+rev.toLocaleString("en-IN"),"Revenue"],[ci,"Check-ins (yours)"]]).map(function(s){return '<div class="stat"><b>'+s[0]+'</b><span>'+s[1]+'</span></div>'}).join("");
+ $("rows").innerHTML=EV.map(function(e){return "<tr><td>"+e.t+"</td><td>"+e.b+"</td><td>"+e.cap+"</td><td>"+Math.round(e.b/e.cap*100)+"%</td><td>₹"+(e.b*e.p).toLocaleString("en-IN")+"</td></tr>"}).join("");
+}
+function close(){$("m").classList.remove("on")}
+$("m").addEventListener("click",function(e){if(e.target===$("m"))close()});
+function book(id){
+ var e=EV.filter(function(x){return x.id===id})[0];
+ $("mbox").innerHTML='<h3 style="margin:0">'+e.t+'</h3><p class="meta">'+e.dt+' · '+e.v+' · '+inr(e.p)+'</p>'
+ +'<label for="nm">Full name</label><input id="nm" autocomplete="name"><label for="em">Email</label><input id="em" type="email" autocomplete="email">'
+ +'<p class="meta" id="err" style="color:var(--bad)"></p><div style="display:flex;gap:10px"><button class="btn" id="pay">'+(e.p?"Pay "+inr(e.p)+" (simulated)":"Confirm free ticket")+'</button><button class="btn ghost" id="cx">Cancel</button></div>';
+ $("m").classList.add("on");$("cx").onclick=close;
+ $("pay").onclick=function(){
+  var n=$("nm").value.trim(),m=$("em").value.trim();
+  if(!n||!/^\S+@\S+\.\S+$/.test(m)){$("err").textContent="Enter a name and a valid email.";return}
+  $("pay").disabled=true;$("pay").textContent="Processing…";
+  setTimeout(function(){
+   if(e.b>=e.cap){$("err").textContent="Sorry, this event just sold out.";return}
+   e.b++;T.push({id:"TS-"+Math.random().toString(16).slice(2,8).toUpperCase(),t:e.t.replace("&amp;","&"),name:n,email:m,used:false});save();
+   close();render();toast("Booked! Confirmation would be emailed to "+m);location.hash="tickets"},900)};
+}
+$("vbtn").onclick=function(){
+ var v=$("vid").value.trim().toUpperCase(),k=T.filter(function(x){return x.id===v})[0];
+ if(!k)return toast("Invalid ticket ID");
+ if(k.used)return toast("Duplicate check-in blocked");
+ k.used=true;save();render();toast("Checked in: "+k.name)};
+$("q").oninput=render;$("cat").onchange=render;render();
+</script>
+</body>
+</html>
